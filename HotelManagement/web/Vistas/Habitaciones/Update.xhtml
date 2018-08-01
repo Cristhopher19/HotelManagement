@@ -1,0 +1,48 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="DialActualizar"
+                  appendTo="@(body)"
+                  closeOnEscape="true"
+                  widgetVar="Actualizar"
+                  modal="true"
+                  showEffect=""
+                  >
+            <h:form id="updateform" >
+                <h:panelGrid id="panelGridEdit" columns="2" cellpadding="5" > 
+                    <p:outputLabel value="N°" for="numHab"/>
+                    <p:inputText id="numHab" value="#{habitacionesController.habitacionesM.num_Hab}" required="true"/>
+
+                    <p:outputLabel value="Estado" for="estHab"/>
+                    <p:inputText id="estHab" value="#{habitacionesController.habitacionesM.estado_Hab}" required="true"/>
+
+                    <p:outputLabel value="Descripcion de Estado" for="desEst"/>
+                    <p:inputText id="desEst" value="#{habitacionesController.habitacionesM.des_Est}" required="true"/>
+
+                    <p:outputLabel value="Costo" for="cosHab"/>
+                    <p:inputText id="cosHab" value="#{habitacionesController.habitacionesM.cos_Hab}" required="true"/>
+
+                    <p:outputLabel value="Descripcion de Habitacion" for="desHab"/>
+                    <p:inputText id="desHab" value="#{habitacionesController.habitacionesM.des_Hab}" required="true"/>
+
+                    <p:outputLabel value="Tipo" for="tipHab"/>
+                    <p:inputText id="tipHab" value="#{habitacionesController.habitacionesM.tipo}" required="true"/>
+
+
+                    <p:commandButton id="btnUpdate" value="Actualizar" actionListener="#{habitacionesController.actualizar()}" 
+                                     oncomplete="handleLoginRequest(xhr, status,args,'Actualizar')"
+                                     update="updateform :form "/>
+                </h:panelGrid>
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+</html>
+

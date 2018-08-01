@@ -1,0 +1,77 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:body>
+
+        <ui:composition template="./../Template/Template.xhtml">
+
+            <ui:define name="Contenido">
+
+                <h:form id="form" >
+
+                    <p:dataTable id="DataHab"
+                                 selectionMode="single" 
+                                 var="Habita"
+                                 value="#{habitacionesController.lstHab}"
+                                 selection="#{habitacionesController.habitacionesM}"
+                                 rowKey="#{Habita.cod_Hab}"
+                                 >
+                        <f:facet name="header">
+                            HABITACIONES
+                        </f:facet>
+
+                        <p:column headerText="N°">
+                            <h:outputText value="#{Habita.num_Hab}"/>
+                        </p:column>
+
+                        <p:column headerText="Estado">
+                            <h:outputText value="#{Habita.estado_Hab}"/>
+                        </p:column>
+
+                        <p:column headerText="Descripcion del Estado">
+                            <h:outputText value="#{Habita.des_Est}"/>
+                        </p:column>
+
+                        <p:column headerText="Costo">
+                            <h:outputText value="#{Habita.cos_Hab}"/>
+                        </p:column>
+
+                        <p:column headerText="Descripcion de Habitacion">
+                            <h:outputText value="#{Habita.des_Hab}"/>
+                        </p:column>
+
+                        <p:column headerText="Tipo">
+                            <h:outputText value="#{Habita.tipo}"/>
+                        </p:column>
+
+                    </p:dataTable>
+
+                    <p:commandButton value="Nuevo" actionListener="#{habitacionesController.limpiar()}"
+                                     update="AddForm" oncomplete="PF('newIngresar').show();"/>
+
+                    <p:contextMenu for="DataHab">
+                        <p:menuitem id="btnUpdateItem" value="Editar" oncomplete="PF('Actualizar').show();" update=":updateform"/>
+                        <p:menuitem value="Eliminar" actionListener="#{habitacionesController.delete()}" update=":updateform">
+                            <p:confirm header="Confirmacion" message="¿Desea eliminar el Registro?" icon="ui-icon-alert"/> 
+                        </p:menuitem>
+                    </p:contextMenu>
+
+                    <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                        <p:commandButton value="SI" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check"/>
+                        <p:commandButton value="NO" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close"/>
+                    </p:confirmDialog>
+
+                </h:form>
+
+                <ui:include src="Add.xhtml"/>
+                <ui:include src="Update.xhtml"/>
+            </ui:define>
+
+        </ui:composition>
+
+    </h:body>
+</html>

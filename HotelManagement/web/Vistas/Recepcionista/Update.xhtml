@@ -1,0 +1,66 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:body>
+        <p:dialog id="UpdateReg"
+                  widgetVar="UpReg"
+                  appendTo="@(body)"
+                  closeOnEscape="true"
+                  resizable="false"
+                  responsive="true"
+                  modal="true"
+                  showEffect="fade"
+                  hideEffect="fade">
+            <h:form id="updateForm">
+                <h:panelGrid id="panelGridEdit" columns="2" cellpadding="5">
+                    <p:outputLabel value="DNI" for="DniReg"/>
+                    <p:inputText id="DniReg" value="#{registradorController.registradorM.DNI_REG}" rendered="true" maxlength="8"/>
+
+                    <p:outputLabel value="NOMBRE" for="NomReg"/>
+                    <p:inputText id="NomReg" value="#{registradorController.registradorM.NOM_REG}"/>
+
+                    <p:outputLabel value="APELLIDO" for="ApeReg"/>
+                    <p:inputText id="ApeReg" value="#{registradorController.registradorM.APE_REG}"/>
+
+                    <p:outputLabel value="DISTRITO"/>
+                    <p:autoComplete class="input100" value="#{registradorController.registradorM.NOMBREUBIGEO}" style="width:100%;font-weight:normal;" completeMethod="#{ubigeoController.autocompleteDistUbigeo}" maxResults="10" forceSelection="true" emptyMessage="No se encontró" required="true" label="Ubigeo"/>
+
+                    <p:outputLabel value="CARGO"/>
+                    <p:selectOneMenu value="#{registradorController.registradorM.CAR_REG}">
+                        <f:selectItem itemValue="RECEPCIÓN/CAMARERA" itemLabel="RECEPCIÓN/CAMARERA"/>
+                        <f:selectItem itemValue="GERENTE GENERAL" itemLabel="GERENTE GENERAL"/>
+                        <f:selectItem itemValue="CAMARERA" itemLabel="CAMARERA"/>
+                        <f:selectItem itemValue="RECEPCIÓN" itemLabel="RECEPCIÓN"/>
+                        <f:selectItem itemValue="ADMINISTRADOR" itemLabel="ADMINISTRADOR"/>
+                    </p:selectOneMenu>
+
+                    <p:outputLabel value="NIVEL"/>
+                    <p:selectOneMenu value="#{registradorController.registradorM.NIV_REG}">
+                        <f:selectItem itemValue="1" itemLabel="ADMINISTRADOR"/>
+                        <f:selectItem itemValue="2" itemLabel="USUARIO"/>
+                    </p:selectOneMenu>
+
+                    <p:outputLabel value="CONTRASEÑA" for="ConReg"/>
+                    <p:inputText id="ConReg" value="#{registradorController.registradorM.PAS_REG}"/>
+                    
+                    <p:outputLabel value="TURNO"/>
+                    <p:selectOneMenu value="#{registradorController.registradorM.TUR_REG}">
+                        <f:selectItem itemValue="MAÑANA" itemLabel="MAÑANA"/>
+                        <f:selectItem itemValue="TARDE" itemLabel="TARDE"/>
+                        <f:selectItem itemValue="NOCHE" itemLabel="NOCHE"/>
+                    </p:selectOneMenu>
+                    
+                    <p:commandButton id="btnUpdate" value="Actualizar" actionListener="#{registradorController.actualizar()}"
+                                     oncomplete="handleSubmit(args,'UpReg');"
+                                     update="updateForm :form "/>
+                </h:panelGrid>
+            </h:form>
+
+        </p:dialog>
+    </h:body>
+</html>
+

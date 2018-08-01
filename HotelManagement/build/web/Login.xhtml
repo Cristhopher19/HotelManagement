@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <link href="resources/css/StylesLogin.css" rel="stylesheet" type="text/css"/>
+        <title>Login</title>        
+    </h:head>
+
+    <h:body>
+
+        <p:growl autoUpdate="true"/>.
+        <div class="cont">
+            <div class="demo">
+                <div class="login">
+                    <div class=""></div>
+
+                    <h:form>
+
+                        <div > <center>
+                                <img src="Vistas/img/Fondo_Hotel.jpg" style="height: 200px; width: 200px"/>
+                            </center>
+                        </div>
+                        <div class="login__form">
+                            <div>
+                                <p:inputText value="#{userController.user}" class="login__input name" placeholder="USUARIO" style="height: 35px; width: 250px"/>
+                            </div>
+                            <br/>
+
+                            <div> 
+                                <p:password value="#{userController.psw}" class="login__input pass" placeholder="CONTRASEÑA" style="height: 35px; width: 250px"/>
+                            </div>
+                            <p:commandButton value="INICIAR SESIÓN" actionListener="#{userController.logeoSession()}"  class="login__submit" />
+                        </div>
+                    </h:form>
+                </div>
+            </div>
+        </div>
+    </h:body>
+
+</html>

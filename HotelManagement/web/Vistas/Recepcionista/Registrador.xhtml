@@ -1,0 +1,73 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <body>
+
+    <ui:composition template="./../Template/Template.xhtml">
+
+        <ui:define name="Contenido">
+
+            <h:form id="form" >
+
+                <p:dataTable id="DataReg"
+                             selectionMode="single" 
+                             var="regis"
+                             value="#{registradorController.lstReg}"
+                             selection="#{registradorController.registradorM}"
+                             rowKey="#{regis.DNI_REG}"
+                             >
+                    <f:facet name="header">
+                        REGISTRADOR
+                    </f:facet>
+
+                    <p:column headerText="DNI">
+                        <h:outputText value="#{regis.DNI_REG}"/>
+                    </p:column>
+
+                    <p:column headerText="NOMBRE">
+                        <h:outputText value="#{regis.NOM_REG}"/>
+                    </p:column>
+
+                    <p:column headerText="APELLIDOS">
+                        <h:outputText value="#{regis.APE_REG}"/>
+                    </p:column>
+
+                    <p:column headerText="UBIGEO">
+                        <h:outputText value="#{regis.NOMBREUBIGEO}"/>
+                    </p:column>
+
+                    <p:column headerText="TURNO">
+                        <h:outputText value="#{regis.TUR_REG}"/>
+                    </p:column>
+
+                </p:dataTable>
+
+                <p:commandButton value="Nuevo" actionListener="#{registradorController.limpiar()}"
+                                 update="AddForm" oncomplete="PF('newIngresar').show();"/>
+
+                <p:contextMenu for="DataReg">
+                    <p:menuitem id="btnUpdateItem" value="Editar" oncomplete="PF('UpReg').show();" update=":updateForm"/>
+                    <p:menuitem value="Eliminar" actionListener="#{registradorController.delete()}" update=":updateForm">
+                        <p:confirm header="Confirmacion" message="¿Desea eliminar el Registro?" icon="ui-icon-alert"/> 
+                    </p:menuitem>
+                </p:contextMenu>
+
+                <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                    <p:commandButton value="SI" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check"/>
+                    <p:commandButton value="NO" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close"/>
+                </p:confirmDialog>
+
+            </h:form>
+            <ui:include src="Update.xhtml"/>
+            <ui:include src="Add.xhtml"/>
+
+        </ui:define>
+
+    </ui:composition>
+
+</body>
+</html>

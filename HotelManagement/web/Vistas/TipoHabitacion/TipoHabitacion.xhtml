@@ -1,0 +1,55 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:body>
+        <ui:composition template="./../Template/Template.xhtml">
+            <ui:define name="Contenido">
+                <center> <h2 style="color: #ffffff"> TIPO HABITACIONES</h2> </center> 
+                <h:form id="form">
+
+                    <p:dataTable id="DataTipHab"
+                                 selectionMode="single" 
+                                 selection="#{tipoHabitacionController.tipoHabitacionM}"
+                                 rowKey="#{TipHab.cod_Tip}"
+                                 value="#{tipoHabitacionController.lstTipHab}"
+                                 var="TipHab">
+                        <f:facet name="header">
+                            TIPO HABITACIONES
+                        </f:facet>
+
+                        <p:column headerText="Tipo">
+                            <h:outputText value="#{TipHab.tip_Hab}"/>
+                        </p:column>
+
+                    </p:dataTable>
+
+                    <p:commandButton value="Nuevo" actionListener="#{tipoHabitacionController.limpiar()}"
+                                     update="AddForm" oncomplete="PF('newIngresar').show();"/>
+
+                    <p:contextMenu for="DataTipHab">
+                        <p:menuitem id="btnUpdateItem" value="Editar" oncomplete="PF('Actualizar').show();" update=":updateform"/>
+                        <p:menuitem value="Eliminar" actionListener="#{tipoHabitacionController.delete()}" update=":updateform">
+                            <p:confirm header="Confirmacion" message="¿Desea eliminar el Registro?" icon="ui-icon-alert"/> 
+                        </p:menuitem>
+                    </p:contextMenu>
+                    
+                    <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                        <p:commandButton value="SI" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check"/>
+                        <p:commandButton value="NO" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close"/>
+                    </p:confirmDialog>
+
+                </h:form>
+
+                <ui:include src="Update.xhtml"/>
+                <ui:include src="Add.xhtml"/>
+
+            </ui:define>
+
+        </ui:composition>
+
+    </h:body>
+</html>

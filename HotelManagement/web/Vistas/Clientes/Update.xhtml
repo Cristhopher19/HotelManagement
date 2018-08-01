@@ -1,0 +1,56 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <ui:composition>
+
+        <p:dialog id="UpdateCli"
+                  widgetVar="UpCli"
+                  appendTo="@(body)"
+                  closeOnEscape="true"
+                  resizable="false"
+                  responsive="true"
+                  modal="true"
+                  showEffect="fade">
+            
+            <h:form id="updateform" >
+                <h:panelGrid id="panelGridEdit" columns="2" cellpadding="5" > 
+
+                    <p:outputLabel value="DNI" for="DniCli"/>
+                    <p:inputText id="DniCli" value="#{clientesCrontroller.clientesM.dni_Cli}" required="true" maxlength="8" type="n"/>
+
+                    <p:outputLabel value="Nombre" for="NomCli"/>
+                    <p:inputText id="NomCli" value="#{clientesCrontroller.clientesM.nom_Cli}" required="true"/>
+
+                    <p:outputLabel value="Apellido" for="ApeCli"/>
+                    <p:inputText id="ApeCli" value="#{clientesCrontroller.clientesM.ape_Cli}" required="true"/>
+
+                    <p:outputLabel value="Nacionalidad"/>
+                    <p:selectOneMenu value="#{clientesCrontroller.clientesM.nac_Cli}">
+                        <f:selectItem itemLabel="PERÚ" itemValue="PERÚ"/>
+                        <f:selectItem itemLabel="VENEZUELA" itemValue="VENEZUELA"/>
+                        <f:selectItem itemLabel="ARGENTINA" itemValue="ARGENTINA"/>
+                        <f:selectItem itemLabel="COLOMBIA" itemValue="COLOMBIA"/>
+                        <f:selectItem itemLabel="CHILE" itemValue="CHILE"/>
+                        <f:selectItem itemLabel="BRAZIL" itemValue="BRAZIL"/>
+                        <f:selectItem itemLabel="MEXICO" itemValue="MEXICO"/>
+                        <f:selectItem itemLabel="ESTADOS UNIDOS" itemValue="ESTADOS UNIDOS"/>
+                    </p:selectOneMenu>           
+
+                    <p:outputLabel value="Distrito:"/>
+                    <p:autoComplete class="input100" value="#{clientesCrontroller.clientesM.nombreUbigeo}" style="width:100%;font-weight:normal;" completeMethod="#{ubigeoController.autocompleteDistUbigeo}" maxResults="10" forceSelection="true" emptyMessage="No se encontró" required="true" label="Ubigeo"/>
+
+                    <p:outputLabel value="Direccion" for="DirCli"/>
+                    <p:inputText id="DirCli" value="#{clientesCrontroller.clientesM.dir_Cli}" />
+
+                    <p:commandButton id="btnUpdate" value="Actualizar" actionListener="#{clientesCrontroller.actualizar()}" 
+                                     oncomplete="handleSubmit(args,'UpCli');"
+                                     update="updateform :form "/>
+                </h:panelGrid>
+            </h:form>
+        </p:dialog>
+    </ui:composition>
+</html>
+

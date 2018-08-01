@@ -1,0 +1,76 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:body>
+
+        <ui:composition template="./../Template/Template.xhtml">
+            <ui:define name="Contenido">
+
+                <h:form id="form" >
+
+                    <p:dataTable id="DataCli"
+                                 selectionMode="single" 
+                                 var="clien"
+                                 value="#{clientesCrontroller.lstCli}"
+                                 selection="#{clientesCrontroller.clientesM}"
+                                 rowKey="#{clien.cod_Cli}"
+                                 >
+                        <f:facet name="header">
+                            CLIENTES
+                        </f:facet>
+
+                        <p:column headerText="DNI">
+                            <h:outputText value="#{clien.dni_Cli}"/>
+                        </p:column>
+
+                        <p:column headerText="Nombre">
+                            <h:outputText value="#{clien.nom_Cli}"/>
+                        </p:column>
+
+                        <p:column headerText="Apellidos">
+                            <h:outputText value="#{clien.ape_Cli}"/>
+                        </p:column>
+
+                        <p:column headerText="Nacionalidad">
+                            <h:outputText value="#{clien.nac_Cli}"/>
+                        </p:column>
+
+                        <p:column headerText="Ubigeo">
+                            <h:outputText value="#{clien.nombreUbigeo}"/>
+                        </p:column>
+
+                        <p:column headerText="Referencia Direccion">
+                            <h:outputText value="#{clien.dir_Cli}"/>
+                        </p:column>
+
+                    </p:dataTable>
+
+                    <p:commandButton value="Nuevo" actionListener="#{clientesCrontroller.limpiar()}"
+                                     update="AddForm" oncomplete="PF('newIngresar').show();"/>
+
+                    <p:contextMenu for="DataCli">
+                        <p:menuitem id="btnUpdateItem" value="Editar" oncomplete="PF('UpCli').show();" update=":updateform"/>
+                        <p:menuitem value="Eliminar" actionListener="#{clientesCrontroller.delete()}" update=":updateform">
+                            <p:confirm header="Confirmacion" message="¿Desea eliminar el Registro?" icon="ui-icon-alert"/> 
+                        </p:menuitem>
+                    </p:contextMenu>
+
+                    <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                        <p:commandButton value="SI" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check"/>
+                        <p:commandButton value="NO" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close"/>
+                    </p:confirmDialog>
+
+                </h:form>
+                <ui:include src="Update.xhtml"/>
+                <ui:include src="Add.xhtml"/>
+
+            </ui:define>
+
+        </ui:composition>
+
+    </h:body>
+</html>

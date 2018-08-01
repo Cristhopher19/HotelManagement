@@ -1,0 +1,33 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="DialActualizar"
+                  appendTo="@(body)"
+                  closeOnEscape="true"
+                  widgetVar="Actualizar"
+                  modal="true"
+                  showEffect=""
+                  >
+            <h:form id="updateform" >
+                <h:panelGrid id="panelGridEdit" columns="2" cellpadding="5" > 
+                    <p:outputLabel value="Tipo Habitacion" for="TipHab"/>
+                    <p:inputText id="TipHab" value="#{tipoHabitacionController.tipoHabitacionM.tip_Hab}" required="true"/>
+
+
+                    <p:commandButton id="btnUpdate" value="Actualizar" actionListener="#{tipoHabitacionController.actualizar()}" 
+                                     oncomplete="handleLoginRequest(xhr, status,args,'Actualizar')"
+                                     update="updateform :form "/>
+                </h:panelGrid>
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+</html>
+

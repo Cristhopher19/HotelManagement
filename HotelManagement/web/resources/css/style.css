@@ -1,0 +1,33 @@
+header, main, footer {
+  padding-left: 300px;
+}
+
+@media only screen and (max-width : 992px) {
+  header, main, footer {
+    padding-left: 0;
+  }
+}
+
+li.tab.side {
+    display: block;
+    text-align: inherit;
+}
+
+.text-teal * {
+  color: #26A69A !important;
+}
+
+.text-teal * {
+  color: #26A69A !important;
+}
+.text-teal .active {
+  background-color: #26A69A !important;
+  color: #FFF !important;
+}
+
+ul#slide-out.tabs {
+  display: block;
+}
+ul#slide-out.tabs .indicator{
+  display:none;
+}
