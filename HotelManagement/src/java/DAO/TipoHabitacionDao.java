@@ -10,7 +10,7 @@ import java.util.List;
 public class TipoHabitacionDao extends Dao {
 
     public List<TipoHabitacionM> listarTip() throws Exception {
-        this.Conectar();
+        this.Conexion();
         List<TipoHabitacionM> lista;
         ResultSet rs;
 
@@ -36,7 +36,7 @@ public class TipoHabitacionDao extends Dao {
     }
 
     public void Ingresar(TipoHabitacionM Model) throws Exception {
-        this.Conectar();
+        this.Conexion();
         try {
             String sql = "insert into T_TIPOHABITACION (Cod_Tip,Tip_Hab) values (?,?)";
             PreparedStatement ps = this.getDao().prepareStatement(sql);
@@ -52,7 +52,7 @@ public class TipoHabitacionDao extends Dao {
     }
 
     public void Actualizar(TipoHabitacionM Model) throws Exception {
-        this.Conectar();
+        this.Conexion();
         try {
             String sql = "UPDATE T_TIPOHABITACION set Tip_Hab= ? WHERE Cod_Tip like ?";
             PreparedStatement ps = this.getDao().prepareStatement(sql);
@@ -68,7 +68,7 @@ public class TipoHabitacionDao extends Dao {
     }
     
         public void delete(String cod) throws Exception {
-        this.Conectar();
+        this.Conexion();
         try {
             String sql = "Update T_TIPOHABITACION set EST_TIP='I' where COD_TIP = ?";
             PreparedStatement ps = this.getDao().prepareCall(sql);

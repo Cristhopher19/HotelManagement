@@ -18,19 +18,23 @@
 
                     <h:form>
 
-                        <div > <center>
+                        <div> 
+                            <center>
                                 <img src="Vistas/img/Fondo_Hotel.jpg" style="height: 200px; width: 200px"/>
                             </center>
                         </div>
                         <div class="login__form">
+
                             <div>
                                 <p:inputText value="#{userController.user}" class="login__input name" placeholder="USUARIO" style="height: 35px; width: 250px"/>
                             </div>
+
                             <br/>
 
                             <div> 
                                 <p:password value="#{userController.psw}" class="login__input pass" placeholder="CONTRASEÑA" style="height: 35px; width: 250px"/>
                             </div>
+
                             <p:commandButton value="INICIAR SESIÓN" actionListener="#{userController.logeoSession()}"  class="login__submit" />
                         </div>
                     </h:form>

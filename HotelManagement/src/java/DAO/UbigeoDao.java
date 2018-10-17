@@ -9,7 +9,7 @@ import java.util.List;
 public class UbigeoDao extends Dao {
 
     public String leerUbigeo(String a) throws Exception { // BUSCA EL CODIGO DE DISTRITO
-        this.Conectar();
+        this.Conexion();
         ResultSet rs;
         try {
             String sql = "SELECT IDUBI FROM UBIGEO WHERE CONCAT(CONCAT(CONCAT(CONCAT(DEPUBI,','),PROVUBI),','),DISTUBI) = ?";
@@ -29,7 +29,7 @@ public class UbigeoDao extends Dao {
 
 //Lista el autocomplete de ubigeo mientras escriben
     public List<String> queryAutoCompleteUbi(String a) throws Exception { //LISTA LOS PROVINCIAS Y DISTRITOS
-        this.Conectar();
+        this.Conexion();
         List<String> lista;
         ResultSet rs;
         String sql;

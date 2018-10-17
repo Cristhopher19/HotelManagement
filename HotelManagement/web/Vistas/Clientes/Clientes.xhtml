@@ -10,8 +10,10 @@
         <ui:composition template="./../Template/Template.xhtml">
             <ui:define name="Contenido">
 
-                <h:form id="form" >
 
+                <h:form id="form" >
+                    <div>#{registradorController.registradorM.NOM_REG}</div>
+           
                     <p:dataTable id="DataCli"
                                  selectionMode="single" 
                                  var="clien"

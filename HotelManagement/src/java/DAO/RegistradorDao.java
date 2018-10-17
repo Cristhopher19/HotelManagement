@@ -10,7 +10,7 @@ import java.util.List;
 public class RegistradorDao extends Dao {
 
     public List<RegistradorM> listarHab() throws Exception {
-        this.Conectar();
+        this.Conexion();
         List<RegistradorM> lista;
         ResultSet rs;
 
@@ -42,7 +42,7 @@ public class RegistradorDao extends Dao {
     }
 
     public void Ingresar(RegistradorM Model) throws Exception {
-        this.Conectar();
+        this.Conexion();
         try {
             String sql = "insert into T_REGISTRADOR (DNI_REG, NOM_REG, APE_REG, IDUBI,CAR_REG,NIV_REG,PAS_REG,TUR_REG) values (?,?,?,?,?,?,?,?)";
             PreparedStatement ps = this.getDao().prepareStatement(sql);
@@ -63,7 +63,7 @@ public class RegistradorDao extends Dao {
     }
 
     public void Actualizar(RegistradorM Model) throws Exception {
-        this.Conectar();
+        this.Conexion();
         try {
             String sql = "UPDATE T_REGISTRADOR set DNI_REG=?, NOM_REG=? , APE_REG=? , IDUBI=?,CAR_REG=? ,NIV_REG=? ,PAS_REG=?, TUR_REG=? WHERE COD_REG like ?";
             PreparedStatement ps = this.getDao().prepareStatement(sql);
@@ -85,7 +85,7 @@ public class RegistradorDao extends Dao {
     }
 
     public void delete(String cod) throws Exception {
-        this.Conectar();
+        this.Conexion();
         try {
             String sql = "UPDATE T_REGISTRADOR set EST_REG ='I' WHERE COD_REG=?";
             PreparedStatement ps = this.getDao().prepareStatement(sql);
@@ -99,7 +99,7 @@ public class RegistradorDao extends Dao {
     }
 
     public RegistradorM startSession(String User, String Pass) throws Exception {
-        this.Conectar();
+        this.Conexion();
         ResultSet rs;
         RegistradorM registradorM = null;
         try {

@@ -1,22 +1,22 @@
 package DAO;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class Dao {
 
-    private Connection Dao;
+    private Connection Dao = null;
 
-    public void Conectar() throws Exception {       //Metodo con los datos de acceso
+    public void Conexion() {
+        FabricaConexion fcn;
         try {
             if (Dao == null) {
+                fcn = new FabricaConexion();
                 Class.forName("oracle.jdbc.OracleDriver");
-                Dao = DriverManager.getConnection("jdbc:oracle:thin:@104.196.160.10:1521:XE", "HotelManagement", "admin");
-//                Dao = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE", "HotelManagement", "admin");
+                Dao = fcn.getConexion(fcn.Cloud);
             }
         } catch (ClassNotFoundException | SQLException e) {
-            throw e;
+            System.err.println("Error -> " + e.getMessage());
         }
     }
 
@@ -37,14 +37,13 @@ public class Dao {
         this.Dao = Dao;
     }
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws ClassNotFoundException {
         Dao dao = new Dao();
-        dao.Conectar();
+        dao.Conexion();
         if (dao.getDao() != null) {
-            System.out.println("conectado");
+            System.out.println("Conectado");
         } else {
-            System.out.println("error");
+            System.err.println("Coneccion es null Error");
         }
     }
-
 }

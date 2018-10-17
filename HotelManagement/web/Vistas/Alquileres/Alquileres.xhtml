@@ -13,12 +13,12 @@
                 <h:form id="form">
                     <p:dataTable
                         id="DataAlq"
-                                 selectionMode="single" 
-                                 var="alqui"
-                                 value="#{alquileresController.lstAlq}"
-                                 selection="#{alquileresController.alquileresM}"
-                                 rowKey="#{alqui.COD_ALQ}"
-                                 >
+                        selectionMode="single" 
+                        var="alqui"
+                        value="#{alquileresController.lstAlq}"
+                        selection="#{alquileresController.alquileresM}"
+                        rowKey="#{alqui.COD_ALQ}"
+                        >
                         <f:facet name="header">
                             ALQUILERES
                         </f:facet>
@@ -46,9 +46,13 @@
                         <p:column headerText="TIPO">
                             <h:outputText value="#{alqui.TIP_HAB}"/>
                         </p:column>
-                        
+
                     </p:dataTable>
+                    <p:commandButton value="Nuevo" actionListener="#{alquileresController.limpiar()}"
+                                     update="AddForm" oncomplete="PF('newIngresar').show();"/>
+
                 </h:form>
+                <ui:include src="Add.xhtml"/>
             </ui:define>
 
         </ui:composition>

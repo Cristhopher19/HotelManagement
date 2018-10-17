@@ -8,7 +8,7 @@ import java.sql.SQLException;
 public class userDao extends Dao{
     
     public RegistradorM UserLogeo(String usu, String psw) throws Exception {
-        this.Conectar();
+        this.Conexion();
         RegistradorM user = null;
         ResultSet rs;
         try {

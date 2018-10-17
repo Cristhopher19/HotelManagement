@@ -1,12 +1,44 @@
-<?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
-    <h:head>
-        <title>Facelet Title</title>
-    </h:head>
-    <h:body>
-        Hello from Facelets
-    </h:body>
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <ui:composition>
+        <p:dialog id="DialIngresar"
+                  widgetVar="newIngresar"
+                  appendTo="@(body)"
+                  closeOnEscape="true"
+                  resizable="false"
+                  responsive="true"
+                  modal="true"  
+                  showEffect="fade"
+                  hideEffect="fade"
+                  >
+            <h:form id="AddForm" >
+                <h:panelGrid columns="2" cellpadding="5">
+
+                    <p:outputLabel value="COSTO" for="CosAlq"/>
+                    <p:inputText id="CosAlq" value="#{alquileresController.alquileresM.COS_ALQ}" required="true" />
+
+                    <p:outputLabel value="OBSERVACION" for="ObsAlq"/>
+                    <p:inputText id="ObsAlq" value="#{alquileresController.alquileresM.OBS_ALQ}"/>
+
+                    <p:outputLabel value="COD HABITACION" for="CodHab"/>
+                    <p:inputText id="CodHab" value="#{alquileresController.alquileresM.COD_HAB}" />
+                    
+                    <p:outputLabel value="COD CLIENTE" for="CodCli"/>
+                    <p:inputText id="CodCli" value="#{alquileresController.alquileresM.COD_CLI}" />
+                    
+                    <p:outputLabel value="COD REGISTRADOR" for="CodReg"/>
+                    <p:inputText id="CodReg" value="#{alquileresController.alquileresM.COD_REG}" />
+
+                    <p:commandButton value="Guardar" actionListener="#{alquileresController.insert()}"
+                                     oncomplete="handleLoginRequest(xhr, status, args,'newIngresar')"
+                                     update="AddForm :form "/>
+                </h:panelGrid>
+            </h:form>
+        </p:dialog>
+    </ui:composition>
 </html>
 

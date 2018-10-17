@@ -12,10 +12,10 @@ import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 import lombok.Data;
 
-@Data
 @Named(value = "alquileresController")
 @SessionScoped
-public class AlquileresController implements Serializable{
+@Data
+public class AlquileresController implements Serializable {
 
     List<AlquileresM> lstAlq = new ArrayList();
     AlquileresM alquileresM = new AlquileresM();
@@ -27,9 +27,9 @@ public class AlquileresController implements Serializable{
         } catch (Exception ex) {
             Logger.getLogger(HabitacionesController.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }
 
+    //LISTAR DATOS AL CARGAR LA PAGINA
     public void listMantenimiento() throws Exception {
         AlquileresDao dao;
         try {
@@ -38,5 +38,22 @@ public class AlquileresController implements Serializable{
         } catch (Exception e) {
             throw e;
         }
+    }
+
+    //INSERTAR O INGRESAR NUEVO REGISTRO
+    public void insert() throws Exception {
+        AlquileresDao dao;
+        try {
+            dao = new AlquileresDao();
+            dao.ingresar(alquileresM);
+            listMantenimiento();
+        } catch (Exception e) {
+            throw e;
+        }
+    }
+    
+    //LIMPIAR
+    public void limpiar(){
+        alquileresM = new AlquileresM();
     }
 }

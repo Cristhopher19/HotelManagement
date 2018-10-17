@@ -10,7 +10,7 @@ import java.util.List;
 public class ClientesDao extends Dao {
 
     public List<ClientesM> listarCli() throws Exception {
-        this.Conectar();
+        this.Conexion();
         List<ClientesM> lista;
         ResultSet rs;
 
@@ -43,7 +43,7 @@ public class ClientesDao extends Dao {
     }
 
     public void Ingresar(ClientesM Model) throws Exception {
-        this.Conectar();
+        this.Conexion();
         try {
             String sql = "insert into T_CLIENTE (Dni_Cli, Nom_Cli,Ape_Cli,IdUbi,Dir_Cli,NAC_CLI) values (?,?,?,?,?,?)";
             PreparedStatement ps = this.getDao().prepareStatement(sql);
@@ -62,7 +62,7 @@ public class ClientesDao extends Dao {
     }
 
     public void Actualizar(ClientesM Model) throws Exception {
-        this.Conectar();
+        this.Conexion();
         try {
             String sql = "UPDATE T_CLIENTE set Dni_Cli =? ,Nom_Cli =? ,Ape_Cli =? ,IdUbi =? ,Nac_Cli =? ,Dir_Cli=?  WHERE COD_CLI= ?";
             PreparedStatement ps = this.getDao().prepareStatement(sql);
@@ -82,7 +82,7 @@ public class ClientesDao extends Dao {
     }
 
     public void delete(String cod) throws Exception {
-        this.Conectar();
+        this.Conexion();
         try {
             String sql = "Update T_CLIENTE set EST_CLI='I' where COD_CLI = ?";
             PreparedStatement ps = this.getDao().prepareCall(sql);
