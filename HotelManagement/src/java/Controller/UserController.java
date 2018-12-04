@@ -22,14 +22,6 @@ public class UserController implements Serializable {
     private boolean admin;
     private boolean usuario;
 
-    public RegistradorM getRegistradorM() {
-        return registradorM;
-    }
-
-    public void setRegistradorM(RegistradorM registradorM) {
-        this.registradorM = registradorM;
-    }
-
     @PostConstruct
     public void inicio() {
         try {
@@ -58,7 +50,7 @@ public class UserController implements Serializable {
                         admin = true;
                         usuario = false;
                         FacesContext.getCurrentInstance().getExternalContext().redirect("faces/Vistas/Clientes/Clientes.xhtml");
-                        
+
                         break;
                     case "2":
                         admin = false;
@@ -75,10 +67,18 @@ public class UserController implements Serializable {
         }
     }
 
-    public void registrar(){
+    public void registrar() {
         registradorM.setDNI_REG(SessionUtils.ObtenerDNISesion());
     }
-            
+
+    public void setRegistradorM(RegistradorM registradorM) {
+        this.registradorM = registradorM;
+    }
+
+    public RegistradorM getRegistradorM() {
+        return registradorM;
+    }
+
     public boolean isAdmin() {
         return admin;
     }
@@ -110,6 +110,5 @@ public class UserController implements Serializable {
     public void setPsw(String psw) {
         this.psw = psw;
     }
-
 
 }
